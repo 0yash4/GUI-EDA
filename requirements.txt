@@ -1,0 +1,6 @@
+Pandas
+Seaborn
+Matplotlib
+flask
+django
+-e .

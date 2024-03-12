@@ -1,11 +1,13 @@
 from setuptools import setup, find_packages
 
-
+HYPEN_DOT="-e ."
 def get_requirements(file_path):
   with open(file_path) as file:
       req=file.readlines()
       req=[req.replace('\n','') for req in req]
-
+	  
+      if HYPEN_DOT in req:
+          req.remove(HYPEN_DOT)
       return req
 
 
