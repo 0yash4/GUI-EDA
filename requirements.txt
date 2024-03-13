@@ -3,4 +3,6 @@ Seaborn
 Matplotlib
 flask
 django
+streamlit
+yfinance
 -e .
