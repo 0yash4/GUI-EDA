@@ -2,7 +2,5 @@ Pandas
 Seaborn
 Matplotlib
 flask
-django
-streamlit
-yfinance
+flask-wtf
 -e .
