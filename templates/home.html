@@ -11,11 +11,20 @@
         <div class="col">
             <div>This is the dummy website you can use for GUI Exploratory Data Analysis.</div>
             <div>You cannot use it for Machine Learning but maybe in future I'll it.</div>
-
         </div>
     </div>
-    <div class="input-group">
-        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload   </button>
-      </div>
+</div>
+<div class='row'>
+    <form method='POST' enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        {{form.csrf_token }}
+        {{form.file.label }}
+        {{form.file}}
+        {{form.submit()}}
+    </form>
+</div>
+<div class="input-group">
+    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload   </button>
+</div>  
 {% endblock content %}
