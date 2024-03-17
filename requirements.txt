@@ -1,6 +1,5 @@
 Pandas
 Seaborn
 Matplotlib
-flask
-flask-wtf
+Streamlit
 -e .
