@@ -1,5 +1,5 @@
-from logger import logging
-from custom_exception import CustomException
+#from src.logger import logging
+from src.custom_exception import CustomException
 import sys
 
 import pandas as pd
@@ -11,37 +11,23 @@ files_names_list = os.listdir(data_folder)   #Gives the list of all the files av
 
 #Below funtion will return the List[str] of file extension
 
-def file_nameOnly():   #This function will give the file name only without extension
-    
-    list=[] 
-    for file in files_names_list:
-        split_tup = file.split(".")
-        list.append(split_tup[0])
-    return list 
+class file_reader:
+    def __init__(self, file_path):
+        self.file_path = file_path
 
-def file_extension():       #This function will give the file name only without extension
-    
-    list=[] 
-    for file in files_names_list:
-        split_tup = file.split(".")
-        list.append(split_tup[1])
-    return list 
-
-class file_reader():
-    def __init__(self):
-            os.makedirs(data_folder, exist_ok=True)
-            for i in range(0, len(file_extension())):
-                if file_extension()[i] == "csv":
-                    pd.read_csv(f"{data_folder}/{files_names_list[i]}")
-                    logging.info(f"Read {files_names_list[i]}")
-
-                elif file_extension()[i] == "json":
-                    pd.read_json(f"{data_folder}/{files_names_list[i]}")
-                    logging.info(f"Read {files_names_list[i]}")
-                
-                else:    
-                    pd.read_excel(f"{data_folder}/{files_names_list[i]}")
-                    logging.info(f"Read {files_names_list[i]}")
+    def read_file(self):
+        file_extension = os.path.splitext(self.file_path)[1].lower()
+        if file_extension == ".csv":
+            df = pd.read_csv(self.file_path)
+        elif file_extension == ".json":
+            df = pd.read_json(self.file_path)
+        elif file_extension in [".xls", ".xlsx"]:
+            df = pd.read_excel(self.file_path)
+        else:
+            raise ValueError("Unsupported file format")
+        
+#        logging.info(f"Read {self.file_path}")
+        return df
 
             
     def head(self, files_names_list):

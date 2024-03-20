@@ -1,11 +1,12 @@
 import streamlit as st 
 import pandas as pd
 import os
+from src.files_reader import file_reader
 
 #from src import files_reader
 
 data_folder= "data"
-file_name: list[str]= os.listdir(data_folder)
+files_names_list: list[str]= os.listdir(data_folder)
 
 st.sidebar.title("GUI-EDA")
 
@@ -25,11 +26,22 @@ if data_file is not None:
  
 st.sidebar.subheader("Uploaded Files are: ")   
 if os.path.exists(data_folder):
-    for files in file_name:
+    for files in files_names_list:
         delete_button_key = f"delete_{files}"
         if st.sidebar.button(f"Click to delete {files}", key=delete_button_key):
             os.remove(os.path.join(data_folder, files))
             st.sidebar.write(f"File '{files}' deleted successfully!")
             
-Option = st.selectbox("Select File", file_name)
-st.write(f"You selected {Option}")
+selected_file = st.selectbox("Select File", files_names_list)
+st.write(f"You selected {selected_file}")
+if selected_file:
+    file_path = os.path.join(data_folder, selected_file)
+
+    # Create an instance of FileReader
+    reader = file_reader(file_path)
+
+    # Read the file and get the DataFrame
+    df = reader.read_file()
+
+    # Display the head of the DataFrame
+    st.write(df.head())
