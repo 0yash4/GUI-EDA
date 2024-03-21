@@ -1,9 +1,9 @@
-def get_requirements(file_path):
-  with open(file_path) as file:
-      req=file.readlines()
-      req=[req.replace('\n','') for req in req]
+import os 
 
-      return req
+file_path = os.path.join("data", os.listdir("data")[0])
 
-if __name__=="__main__":
-  print(get_requirements("requirements.txt"))
+
+file_extension = os.path.splitext(file_path)[1].lower()
+
+print(file_extension)
+
