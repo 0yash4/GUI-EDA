@@ -1,4 +1,4 @@
-#from src.logger import logging
+from src.logger import logging
 from src.custom_exception import CustomException
 import sys
 
@@ -28,15 +28,3 @@ class file_reader:
         
 #        logging.info(f"Read {self.file_path}")
         return df
-
-            
-    def head(self, files_names_list):
-        pass
-        
-
-
-
-
-
-if __name__=="__main__":
-    file_reader = file_reader()
