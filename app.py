@@ -1,5 +1,7 @@
 import streamlit as st 
-import pandas as pd
+import matplotlib.pyplot as mp 
+import pandas as pd 
+import seaborn as sb 
 import os
 from src.files_reader import file_reader
 
@@ -51,4 +53,5 @@ if selected_file:
     st.dataframe(df.describe(), width=1000, height=213)
     st.write(f"Null Values in: {selected_file}")
     st.dataframe(df.isnull().sum(), width=1000, height=213)
-
+    corr = df.select_dtypes(exclude = ["string", "category"])
+    st.write(corr.corr())
