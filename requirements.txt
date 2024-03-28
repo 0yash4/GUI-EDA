@@ -2,4 +2,5 @@ Pandas
 Seaborn
 Matplotlib
 Streamlit
+pygwalker
 -e .

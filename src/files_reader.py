@@ -1,9 +1,10 @@
-from src.logger import logging
-from src.custom_exception import CustomException
+import os
 import sys
 
 import pandas as pd
-import os
+
+from src.custom_exception import CustomException
+from src.logger import logging
 
 data_folder = "data"
 files_names_list = os.listdir(data_folder)   #Gives the list of all the files available in data folder

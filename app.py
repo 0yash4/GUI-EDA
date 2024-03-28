@@ -1,14 +1,21 @@
-import streamlit as st 
-import matplotlib.pyplot as mp 
-import pandas as pd 
-import seaborn as sb 
 import os
+
+import matplotlib.pyplot as mp
+import pandas as pd
+import pygwalker as pyg
+import seaborn as sb
+import streamlit as st
+import streamlit.components.v1 as components
+from pygwalker.api.streamlit import StreamlitRenderer, init_streamlit_comm
+
 from src.files_reader import file_reader
 
 #from src import files_reader
 
 data_folder= "data"
 files_names_list: list[str]= os.listdir(data_folder)
+
+st.set_page_config(layout="wide")
 
 st.sidebar.title("GUI-EDA")
 
@@ -36,7 +43,7 @@ if os.path.exists(data_folder):
             st.sidebar.write(f"File '{files}' deleted successfully!")
 
 #Select Box to u
-selected_file = st.selectbox("Select File", files_names_list, index=None)
+selected_file = st.selectbox("Select File", files_names_list, )
 st.write(f"You selected {selected_file}")
 if selected_file:
     file_path = os.path.join(data_folder, selected_file)
@@ -53,5 +60,4 @@ if selected_file:
     st.dataframe(df.describe(), width=1000, height=213)
     st.write(f"Null Values in: {selected_file}")
     st.dataframe(df.isnull().sum(), width=1000, height=213)
-    corr = df.select_dtypes(exclude = ["string", "category"])
-    st.write(corr.corr())
+ 
