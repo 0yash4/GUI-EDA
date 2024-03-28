@@ -55,9 +55,5 @@ if selected_file:
     df = reader.read_file()
 
     # Display the head of the DataFrame
-    st.dataframe(df.head(), width=1000 ,height=213)
-    st.write(f"Basic Info: {selected_file}")
-    st.dataframe(df.describe(), width=1000, height=213)
-    st.write(f"Null Values in: {selected_file}")
-    st.dataframe(df.isnull().sum(), width=1000, height=213)
+    st.header("Exploratory Data Analysis")
  
